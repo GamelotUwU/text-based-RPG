@@ -3,3 +3,5 @@
 ## normalize talking on git not social media 
 
 ### normalize deez nutz
+
+### 1000-7?xx
