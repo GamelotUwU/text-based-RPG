@@ -1,53 +1,60 @@
-#--- ITEM CLASS ---
+
 class Item:
-    def __init__(self, name:str, description:str, rarity:str, value:int, type:str):
+    def __init__(self, name, description, rarity, value, type):
         self.name = name
         self.description = description
         self.rarity = rarity
-        self.value = value
+        self.value = int(value)
         self.type = type
-    
-    def display_item_info(self):
-        return (
-            f"Name: {self.name}\n"
-            f"Description: {self.description}\n"
-            f"Rarity: {self.rarity}\n"
-            f"Value: {self.value}\n"
-            f"Type: {self.type}\n"
-        )
+        
+    def __str__(self):
+        return f"Name: {self.name}\n Description: {self.description}\n Rarity: {self.rarity}\n Value: {self.value}\n Type: {self.type}"
+        
 
-#--- WEAPON CLASS ---
+
 class Weapon(Item):
-    def __init__(self, name:str, description:str, rarity:str, value:int, damage:int, durability:int):
+    def __init__(self, name, description, rarity, value, damage, durability):
         super().__init__(name, description, rarity, value, "Weapon")
-        self.damage = damage
-        self.durability = durability
+        self.damage = int(damage)
+        self.durability = int(durability)
+        
+    def __str__(self):
+            return f"""
+Name: {self.name}
+Description: {self.description}
+Rarity: {self.rarity}
+Value: {self.value}
+Damage: {self.damage}
+Durability: {self.durability}
+"""
 
-    def display_item_info(self):
-        return (
-            super().display_item_info()
-            + f"Damage: {self.damage}\n"
-            + f"Durability: {self.durability}\n"
-            )
 
-#--- ARMOR CLASS ---
 class Armor(Item):
-    def __init__(self, name:str, description:str, rarity:str, value:int, defense:int, durability:int):
+    def __init__(self, name, description, rarity, value, defense, durability):
         super().__init__(name, description, rarity, value, "Armor")
-        self.defense = defense
-        self.durability = durability
+        self.defense = int(defense)
+        self.durability = int(durability)
 
-    def display_item_info(self):
-        return (
-            super().display_item_info()
-            + f"Defense: {self.defense}\n"
-            + f"Durability: {self.durability}\n"
-            )
+    
+    def __str__(self):
+        return f"""
+Name: {self.name}
+Description: {self.description}
+Rarity: {self.rarity}
+Value: {self.value}
+Type: {self.type}
+Defense: {self.defense}
+Durability: {self.durability}
+"""
+        
 
-#sword test
-#sword = Weapon("Sword", "Just a Sword.", "EPIC", 1000, 60, 100)
-#print(sword.display_item_info())
+name = input("Name: ")
+descr = input("Description: ")
+rar = input("Rarity: ")
+val = input("Value: ")
+dmg = input("Damage: ")
+dur = input("Durability: ")
 
-#helmet test
-#helmet = Armor("Helmet", "Just a Helmet", "Common", 10, 25, 100)
-#print(helmet.display_item_info())
+sword = Weapon(name, descr, rar, val, dmg, dur)
+print("")
+print(sword)
