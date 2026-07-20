@@ -1,36 +1,41 @@
 from item_classes import Item, Weapon, Armor
+from loot_generator import loot_generator
+import random
 
 class Chest:
-    # def __init__(self, loot = None):
-        
+    def __init__(self):
+        self.is_open = False
+        self.loot = []
 
-    def add_item(self, Item):
-        if not self.is_open:
-            self.loot.append(Item)
-    
+    def open(self):
+        if self.is_open:
+            return self.loot
+        #---
+        number_of_items = random.randint(0, 5)
+
+        for _ in range(number_of_items):
+            if random.random() < 0.5:
+                self.loot.append(loot_generator.generate_weapon())
+            else:
+                self.loot.append(loot_generator.generate_armor())
+
+        self.is_open = True
+        return self.loot
+        #---
     def __str__(self):
+        if not self.loot:
+            return "Empty chest"
+        
         list = "\n- ".join([item.name for item in self.loot])
         return f"Chest loot: \n- {list}"
-    
 
 
-sword = Weapon("Sword of Rya", "This is a sword of a serpent", "Legendary", 1000, 77, 100)
-helmet = Armor("Helmet of Fae", "Fae's magic helmet that grants you magic powers", "Legendary", 1000, 35, 100)
-
-#custom items
-bag = Item("bag", "a bag","Legendary",0,"bag1231924")
 
 chest = Chest()
-
-
-chest.add_item(sword)
-chest.add_item(helmet)
-chest.add_item(bag)
-
-print(chest)
 
 items = chest.open()
 
 for item in items:
     print(item)
 
+print(chest)
