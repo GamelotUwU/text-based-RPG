@@ -1,9 +1,11 @@
 import time
 
-from entities import Hero, Enemy
-from node_classes import Battle
+from hero_class import Hero
+from monster_class import Monster
+from battle_class import Battle
+from item_classes import Gold_Bag
 
-
+"""  
 enemy_list = []
 
 print("Build character:")
@@ -33,8 +35,7 @@ time.sleep(5)
 battle = Battle(hero, enemy_list)
 battle.start()
 
-
-
+"""
 
 
 

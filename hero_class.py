@@ -1,27 +1,19 @@
-class Character:
-    def __init__(self, name, health):
-        self.name = name
-        self.health = health
-    
-    def take_damage(self, dmg):
-        self.health -= dmg
-
-    def is_alive(self):
-        return(self.health > 0)
-    
-
+from character_class import Character
 
 class Hero(Character):
 
     exp_needed = 100
     base_dmg = 10
     max_health = 100
+    gold = 0
 
     def __init__(self, name, level, health, experience):
         super().__init__(name, health)
         self.level = level
         self.experience = int(experience)
 
+    def gain_gold(self, item):
+        self.gold += item.amount()
 
     def level_up(self):
         self.level += 1
@@ -39,18 +31,3 @@ class Hero(Character):
             self.level_up()
             self.experience = 0
         
-
-   
-   
-class Enemy(Character):
-    def __init__(self, name, health, damage, exp_points):
-        super().__init__(name, health)
-        self.damage = damage
-        self.exp_points = int(exp_points)
-
-    def __str__(self):
-        return f"Enemy:{self.name} \nHealth:{self.health} \nAttack:{self.damage}\n"
-    
-    def attack(self, target):
-        target.take_damage(self.damage)
-    
