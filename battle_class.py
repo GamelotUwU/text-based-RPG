@@ -8,13 +8,12 @@ class Battle:
         self.hero = hero
         self.enemies = enemies
 
-    def start(self):
+
+    def activate(self):
 
         enemy_index = 0
-
-
         random.shuffle(self.enemies)
-        
+    
         while True:
 
             time.sleep(5)

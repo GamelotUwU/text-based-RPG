@@ -2,15 +2,13 @@ from item_classes import Item, Weapon, Armor
 from loot_generator import loot_generator
 import random
 
-class Chest:
+class Chest():
     def __init__(self):
+        super().__init__()
         self.is_open = False
         self.loot = []
-
-    def open(self):
-        if self.is_open:
-            return self.loot
-        #---
+    
+    def interact(self):
         number_of_items = random.randint(0, 5)
 
         for _ in range(number_of_items):
@@ -19,9 +17,9 @@ class Chest:
             else:
                 self.loot.append(loot_generator.generate_armor())
 
-        self.is_open = True
         return self.loot
-        #---
+    
+
     def __str__(self):
         if not self.loot:
             return "Empty chest"
