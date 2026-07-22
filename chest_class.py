@@ -31,9 +31,5 @@ class Chest():
 
 chest = Chest()
 
-items = chest.open()
-
-for item in items:
-    print(item)
 
 print(chest)
