@@ -20,7 +20,7 @@ class Hero(Character):
         self.health = self.max_health
 
     def __str__(self):
-        return f"Character:{self.name} (Level {self.level}) \nHealth:{self.health}"
+        return f"Character:{self.name} (Level {self.level}) \nHealth:{self.health} \nGold:{self.gold}"
     
     def attack(self, enemy):
         enemy.take_damage(self.level * self.base_dmg)
