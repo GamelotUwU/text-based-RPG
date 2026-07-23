@@ -11,6 +11,7 @@ class Hero(Character):
         super().__init__(name, health)
         self.level = level
         self.experience = int(experience)
+        self.hero_inventory = []
 
     def gain_gold(self, item):
         self.gold += item.amount()
