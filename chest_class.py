@@ -8,7 +8,7 @@ class Chest():
         self.is_open = False
         self.loot = []
     
-    def interact(self):
+    def activate(self):
         number_of_items = random.randint(0, 5)
 
         for _ in range(number_of_items):
