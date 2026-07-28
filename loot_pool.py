@@ -58,3 +58,13 @@ ARMORS = [
         "base_value": 10
     }
 ]
+
+ITEMS = [
+    {
+        "name": "Healing potion",
+        "heal value": 20,
+        "value": 30
+    }
+
+
+]

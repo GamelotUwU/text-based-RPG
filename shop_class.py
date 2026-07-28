@@ -1,5 +1,7 @@
 from hero_class import Hero
 from loot_generator import loot_generator
+from loot_pool import ITEMS
+from campfire_class import Campfire
 import random
 
 class Shop():
@@ -36,11 +38,22 @@ class Shop():
         
     def sell(self, index):
         name, price = self.item_list[index]
+
         if(self.hero.gold >= price):
-            self.hero.hero_inventory.append(self.item_list[index])
-            self.hero.gold -= price
-            self.item_list[index] = ("X", "")
-            return True
+
+            if(name == "Healing potion"):
+                self.hero.gold -= price
+                campfire = Campfire(self.hero)
+                self.item_list[index] = ("X", "")
+                campfire.heal()
+                print(f"Hero has bought a healing potion, hero now has {self.hero.health} HP")
+                return True
+
+            else:
+                self.hero.hero_inventory.append(self.item_list[index])
+                self.hero.gold -= price
+                self.item_list[index] = ("X", "")
+                return True
         else:
             return False
             
@@ -73,13 +86,20 @@ class Shop():
                 print("Not enough Gold!\n")
 
     def create_list(self):
-        for i in range(4):
+        for i in range(3):
             self.store_item = loot_generator.generate_weapon()
             weapon_list.append(self.store_item)
             item = f"{self.store_item.name}({self.store_item.rarity})"
             price = self.store_item.value
             self.store_item = (item, price)
             self.item_list.append(self.store_item)
+
+        self.store_item = ITEMS[0]
+        weapon_list.append(self.store_item)
+        item = f"{self.store_item["name"]}"
+        price = self.store_item["value"]
+        self.store_item = (item, price)
+        self.item_list.append(self.store_item)
 
     def arrange_on_shelf(self, item):
         shelf_length = 20
@@ -99,6 +119,7 @@ class Shop():
     
 
 hero = Hero("Test", 1, 150,0)
+hero.take_damage(70)
 hero.gold = 100
 shop_list = []
 weapon_list = []
